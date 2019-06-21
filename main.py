@@ -16,7 +16,8 @@ def main():
         Team('Annihilators'),
         Team('Black Panthers'),
         Team('Brute Force'),
-        Team('Chaos')
+        Team('Chaos'),
+        Team('Full Atack')
     ]
     for team in teams:
         for fighter_num in range(5):
@@ -27,6 +28,8 @@ def main():
     # create random fighters, create random managers(the player is one of those managers)
     first_league = League('Battle Zone')
     first_league.set_teams(teams)
+
+    first_league.play_tournament()
 
 
 if __name__ == '__main__':

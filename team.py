@@ -11,6 +11,8 @@ Inteligence
 - Salary
 - Arena(Game)
 """
+import random
+import copy
 
 
 class Team:
@@ -24,6 +26,9 @@ class Team:
         self.name = name
         self.fighters = []
 
+        self.wins = 0
+        self.losses = 0
+
 
 class Manager:
     """
@@ -31,6 +36,20 @@ class Manager:
     """
     pass
 
+
+class Game:
+    """
+    - plays a match between two fighters of diferent teams
+    - the fighters are chosen at random between the two teams
+    - an arena(game) belongs to a league
+    """
+    def __init__(self, league, home_team, away_team):
+        self.league = league
+
+        self.home_team = home_team
+        self.away_team = away_team
+    def play(self):
+        return None
 
 class League:
     """
@@ -45,11 +64,26 @@ class League:
         # finish the current league season
         self.teams = teams
 
+    def play_tournament(self):
+        """
+        play 10 rounds between all our teams
+        """
+        for i in range(10):
+            self.play_round()
 
-class Game:
-    """
-    - plays a match between two fighters of diferent teams
-    - the fighters are chosen at random between the two teams
-    - an arena(game) belongs to a league
-    """
-    pass
+    def play_round(self):
+        """
+        play a round, which is 3 matches
+        """
+        num_teams = len(self.teams)
+        num_games = num_teams // 2
+
+        teams_to_play = copy.copy(self.teams)
+        for game_num in range(num_games):
+            home_team = random.choice(teams_to_play)
+            teams_to_play.remove(home_team)
+            away_team = random.choice(teams_to_play)
+            teams_to_play.remove(away_team)
+
+            game = Game(self,home_team, away_team )
+            game.play()
