@@ -14,7 +14,7 @@ class Fighters:
 
         # fighter salary
     def salary(self):
-        return 10000 + self.skill*50
+        return 5000 + self.skill*100
 
 
 def generate_skill():

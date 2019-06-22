@@ -22,12 +22,19 @@ class Team:
     - a team wins/losses matches in a league
     - a team has a single manager
     """
+
     def __init__(self, name):
         self.name = name
         self.fighters = []
 
         self.wins = 0
         self.losses = 0
+
+        self.money = 1000000
+
+    def pay_fighters(self):
+        for fighter in self.fighters:
+            self.money -= fighter.salary()
 
     def rating(self):
         """
@@ -41,12 +48,6 @@ class Team:
     def __str__(self):
         return '{} {}'.format(self.name, self.rating())
 
-class Manager:
-    """
-    - a manager runs the team(manage fighters, hire and fire, look at stats, etc)
-    """
-    pass
-
 
 class Game:
     """
@@ -54,6 +55,7 @@ class Game:
     - the fighters are chosen at random between the two teams
     - an arena(game) belongs to a league
     """
+
     def __init__(self, league, home_team, away_team):
         self.league = league
 
@@ -89,22 +91,15 @@ class League:
     - a league has many teams
     - each team is gonna have a ranking within every single league
     """
+
     def __init__(self, name):
         self.name = name
         self.teams = []
+        self.rounds_played = 0
 
     def set_teams(self, teams):
         # finish the current league season
         self.teams = teams
-
-    def play_tournament(self):
-        """
-        play 10 rounds between all our teams
-        """
-        print('Tournament begins.')
-        for i in range(10):
-            self.play_round()
-        print('Tournament ends.')
 
     def play_round(self):
         """
@@ -126,13 +121,14 @@ class League:
             self.resolve_game(game)
 
         print('Round ends.')
+        self.rounds_played += 1
 
         print('Ladder:')
-        #ladder status for the team
+        # ladder status for the team
         self.ladder()
 
     def ladder(self):
-        for team in sorted(self.teams, key =lambda t: -t.wins):
+        for team in sorted(self.teams, key=lambda t: -t.wins):
             print('{}: {} wins.'.format(team, team.wins))
 
     def resolve_game(self, game):
@@ -144,3 +140,6 @@ class League:
             # away team won
             game.home_team.losses += 1
             game.away_team.wins += 1
+
+        game.home_team.pay_fighters()
+        game.away_team.pay_fighters()
