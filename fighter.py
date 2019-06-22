@@ -6,6 +6,7 @@ class Fighters:
     - a fighter is on a single team with many other players
     - a fighter plays in a match for a team
     """
+
     def __init__(self, name, skill):
         self.name = name
 
@@ -13,8 +14,13 @@ class Fighters:
         self.skill = skill
 
         # fighter salary
+
     def salary(self):
-        return 5000 + self.skill*100
+        return 5000 + self.skill * 100
+
+    def __str__(self):
+        return '{}, Skill:{}, Salary:{}'.format(
+            self.name, self.skill, self.salary())
 
 
 def generate_skill():
@@ -42,6 +48,7 @@ def generate_skill():
 
     return int(stamina + strength_generator(stamina) + intelligence_generator(strength_generator(stamina), stamina))
 
+
 def generate_fighter():
     # generate a name form bellow
     names = [
@@ -52,7 +59,8 @@ def generate_fighter():
         'ANDREA', 'ANDREAS', 'ANDRES', 'ANDREW', 'ANDY', 'ANGEL', 'ANGELO', 'ANIBAL', 'ANTHONY', 'ANTIONE', 'ANTOINE',
         'ANTON', 'ANTONE', 'ANTONIA', 'ANTONIO', 'ANTONY', 'ANTWAN', 'ARCHIE', 'ARDEN', 'ARIEL', 'ARLEN', 'ARLIE',
         'ARMAND', 'ARMANDO', 'ARNOLD', 'ARNOLDO', 'ARNULFO', 'ARON', 'ARRON', 'ART', 'ARTHUR', 'ARTURO', 'ASA'
-        'BARTON', 'BASIL', 'BEAU', 'BEN	0.0', 'BENEDIC', 'BENITO', 'BENJAMI', 'BENNETT', 'BENNIE', 'BENNY', 'BENTON',
+                                                                                                         'BARTON',
+        'BASIL', 'BEAU', 'BEN	0.0', 'BENEDIC', 'BENITO', 'BENJAMI', 'BENNETT', 'BENNIE', 'BENNY', 'BENTON',
         'BERNARD', 'BERNARD', 'BERNIE', 'BERRY', 'BERT', 'BERTRAM', 'BILL', 'BILLIE', 'BILLY', 'BLAINE', 'BLAIR',
         'BLAKE', 'BO', 'BOB', 'BOBBIE', 'BOBBY', 'BOOKER', 'BORIS', 'BOYCE', 'BOYD', 'BRAD', 'BRADFOR', 'BRADLEY',
         'BRADLY', 'BRADY', 'BRAIN', 'BRANDEN', 'BRANDON', 'BRANT', 'BRENDAN', 'BRENDON', 'BRENT', 'BRENTON', 'BRET',
@@ -76,7 +84,8 @@ def generate_fighter():
         'DOUGLAS', 'DOUGLAS', 'DOYLE', 'DREW', 'DUANE', 'DUDLEY', 'DUNCAN', 'DUSTIN', 'DUSTY', 'DWAIN', 'DWAYNE',
         'DWIGHT', 'DYLAN', 'EARL', 'EARLE', 'EARNEST', 'ED	0.0', 'EDDIE', 'EDDY', 'EDGAR', 'EDGARDO', 'EDISON',
         'EDMUND', 'EDMUNDO', 'EDUARDO', 'EDWARD', 'EDWARDO', 'EDWIN', 'EFRAIN', 'EFREN', 'ELBERT', 'ELDEN', 'ELDON',
-        'ELDRIDG', 'ELI	0.0', 'ELIAS', 'ELIJAH', 'ELISEO', 'ELISHA', 'ELLIOT', 'ELLIOTT', 'ELLIS', 'ELLSWOR', 'ELMER',
+        'ELDRIDG', 'ELI	0.0', 'ELIAS', 'ELIJAH', 'ELISEO', 'ELISHA', 'ELLIOT', 'ELLIOTT', 'ELLIS', 'ELLSWOR',
+        'ELMER',
         'ELMO', 'ELOY', 'ELROY', 'ELTON', 'ELVIN', 'ELVIS', 'ELWOOD', 'EMANUEL', 'EMERSON', 'EMERY', 'EMIL', 'EMILE',
         'EMILIO', 'EMMANUE', 'EMMETT', 'EMMITT', 'EMORY', 'ENOCH', 'ENRIQUE', 'ERASMO', 'ERIC', 'ERICH', 'ERICK',
         'ERIK', 'ERIN', 'ERNEST', 'ERNESTO', 'ERNIE', 'ERROL', 'ERVIN', 'ERWIN', 'ESTEBAN', 'ETHAN', 'EUGENE',

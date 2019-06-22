@@ -13,6 +13,7 @@ Inteligence
 """
 import random
 import copy
+from helpers import resolve_game
 
 
 class Team:
@@ -32,9 +33,14 @@ class Team:
 
         self.money = 1000000
 
-    def pay_fighters(self):
+    def weekly_salary(self):
+        salary = 0
         for fighter in self.fighters:
-            self.money -= fighter.salary()
+            salary += fighter.salary()
+        return salary
+
+    def pay_fighters(self):
+        self.money -= self.weekly_salary()
 
     def rating(self):
         """
@@ -92,9 +98,11 @@ class League:
     - each team is gonna have a ranking within every single league
     """
 
-    def __init__(self, name):
+    def __init__(self, name, teams, fighters):
         self.name = name
-        self.teams = []
+        self.teams = teams
+        self.fighters = fighters
+
         self.rounds_played = 0
 
     def set_teams(self, teams):
@@ -118,7 +126,7 @@ class League:
 
             game = Game(self, home_team, away_team)
             game.play()
-            self.resolve_game(game)
+            resolve_game(game)
 
         print('Round ends.')
         self.rounds_played += 1
@@ -130,16 +138,3 @@ class League:
     def ladder(self):
         for team in sorted(self.teams, key=lambda t: -t.wins):
             print('{}: {} wins.'.format(team, team.wins))
-
-    def resolve_game(self, game):
-        if game.home_team_won:
-            # home team won
-            game.home_team.wins += 1
-            game.away_team.losses += 1
-        else:
-            # away team won
-            game.home_team.losses += 1
-            game.away_team.wins += 1
-
-        game.home_team.pay_fighters()
-        game.away_team.pay_fighters()

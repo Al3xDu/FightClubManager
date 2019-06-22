@@ -28,7 +28,7 @@ def main():
             fighters.remove(selected_fighter)
 
     # create random fighters, create random managers(the player is one of those managers)
-    first_league = League('Battle Zone')
+    first_league = League('Battle Zone', teams, fighters)
     first_league.set_teams(teams)
 
     # create the manager(player)
