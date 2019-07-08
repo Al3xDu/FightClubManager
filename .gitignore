@@ -1,4 +1,4 @@
 # Things to be ignored
-__pycache__
-.idea
 .git
+.idea
+__pycache__
